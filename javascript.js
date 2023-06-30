@@ -6,11 +6,11 @@ function getComputerChoice(){
     let computerSelection;
 
     if (num === 1) {
-        computerSelection = 'rock';
+        computerSelection = "rock";
     } else if (num === 2) {
-        computerSelection = 'paper';
+        computerSelection = "paper";
     } else {
-        computerSelection = 'scissors';
+        computerSelection = "scissors";
     }
 
     return computerSelection;
@@ -34,19 +34,45 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-    for (let i = 1; i <= 5; i++) {
+
+    // for (let i = 1; i <= 5; i++) {
+    //     let playerSelection = prompt("Pick one: Rock, Paper, or Scissors?");
+    //     playerSelection = playerSelection.toLowerCase();
+    //     let computerSelection = getComputerChoice();
+    //     alert(playRound(playerSelection, computerSelection));
+    // }
+
+    let currentRound = true;
+    let roundNum = 1;
+
+    while (currentRound) {
         let playerSelection = prompt("Pick one: Rock, Paper, or Scissors?");
-        playerSelection = playerSelection.toLowerCase();
-        let computerSelection = getComputerChoice();
-        alert(playRound(playerSelection, computerSelection));
+
+        if ((playerSelection.toLowerCase() == "rock") ||
+            (playerSelection.toLowerCase() == "paper") ||
+            (playerSelection.toLowerCase() == "scissors")) {
+            playerSelection = playerSelection.toLowerCase();
+            let computerSelection = getComputerChoice();
+            alert(playRound(playerSelection, computerSelection));
+        } else {
+            alert("Invalid entry. Please pick Rock, Paper, or Scissors.");
+            continue;
+        }
+
+        if (roundNum == 5) {
+            currentRound = false;
+        } else {
+            roundNum++;
+        }
+
     }
 
     if (playerWinCount >= 3) {
-        alert("The player wins the game!");
+        alert("The player won " + playerWinCount + " out of 5 rounds. The player wins the game!");
     } else if (playerWinCount === computerWinCount) {
-        alert("Tie game!");
+        alert("The player and computer each won " + playerWinCount + " round(s). Tie game!");
     } else {
-        alert("The computer wins the game!");
+        alert("The computer won " + computerWinCount + " out of 5 rounds. The computer wins the game!");
     }
 }
 
