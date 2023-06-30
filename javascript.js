@@ -35,13 +35,6 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
 
-    // for (let i = 1; i <= 5; i++) {
-    //     let playerSelection = prompt("Pick one: Rock, Paper, or Scissors?");
-    //     playerSelection = playerSelection.toLowerCase();
-    //     let computerSelection = getComputerChoice();
-    //     alert(playRound(playerSelection, computerSelection));
-    // }
-
     let currentRound = true;
     let roundNum = 1;
 
