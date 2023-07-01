@@ -60,12 +60,12 @@ function game() {
 
     }
 
-    if (playerWinCount >= 3) {
+    if (playerWinCount > computerWinCount) {
         alert("The player won " + playerWinCount + " out of 5 rounds. The player wins the game!");
+    } else if (playerWinCount < computerWinCount) {
+        alert("The computer won " + computerWinCount + " out of 5 rounds. The computer wins the game!");
     } else if (playerWinCount === computerWinCount) {
         alert("The player and computer each won " + playerWinCount + " round(s). Tie game!");
-    } else {
-        alert("The computer won " + computerWinCount + " out of 5 rounds. The computer wins the game!");
     }
 }
 
