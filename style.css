@@ -29,7 +29,7 @@ body {
     justify-content: center;
 }
 
-button {
+#start-game {
     background-color: #0b61eb;
     color:#F9FAF8;
     font-size: 18px;
@@ -39,10 +39,10 @@ button {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-button:hover {
+#start-game:hover {
     background-color: #f39209;
 }
 
-button:active {
+#start-game:active {
     top: 2px;
 }
