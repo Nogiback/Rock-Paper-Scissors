@@ -23,7 +23,7 @@ button {
 }
 
 button:active {
-    top: 2px;
+    transform: translateY(2px);
 }
 
 .header {
@@ -52,9 +52,9 @@ button:active {
     background-color: #f39209;
 }
 
-.rock-btn,
-.paper-btn,
-.scissors-btn {
+#rock-btn,
+#paper-btn,
+#scissors-btn {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -64,12 +64,17 @@ button:active {
     border-radius: 8px;
 }
 
-.rock-btn:hover,
-.paper-btn:hover,
-.scissors-btn:hover {
+#rock-btn:hover,
+#paper-btn:hover,
+#scissors-btn:hover {
     background-color:chartreuse;
 }
 
 .results {
     color: #F9FAF8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 500px;
 }
