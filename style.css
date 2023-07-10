@@ -16,6 +16,16 @@ body {
     background-color: #1F2937;
 }
 
+button {
+    border-style: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    cursor: pointer;
+}
+
+button:active {
+    top: 2px;
+}
+
 .header {
     color: #F9FAF8;
     display: flex;
@@ -24,32 +34,27 @@ body {
     padding: 20px;
 }
 
-.container {
+.rps-btns {
     display: flex;
     align-items: center;
     justify-content: center;
-    
 }
 
-#start-game {
+#start-game-btn {
     background-color: #0b61eb;
     color:#F9FAF8;
     font-size: 18px;
     padding: 12px 12px;
     border-radius: 8px;
-    border-style: none;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#start-game:hover {
+#start-game-btn:hover {
     background-color: #f39209;
 }
 
-#start-game:active {
-    top: 2px;
-}
-
-.rps-btn {
+.rock-btn,
+.paper-btn,
+.scissors-btn {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -57,11 +62,14 @@ body {
     padding: 2px 8px;
     margin: 30px 12px;
     border-radius: 8px;
-    border-style: none;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-.rps-btn:hover {
+.rock-btn:hover,
+.paper-btn:hover,
+.scissors-btn:hover {
     background-color:chartreuse;
 }
 
+.results {
+    color: #F9FAF8;
+}
