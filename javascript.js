@@ -1,72 +1,81 @@
+// Declaring and initializing global variables and HTML elements
 let playerWinCount = 0;
 let computerWinCount = 0;
+const startGameBtn = document.querySelector("#start-game-btn");
+const results = document.querySelector(".results");
+const rockBtn = document.getElementById("rock-btn");
+const paperBtn = document.getElementById("paper-btn");
+const scissorsBtn = document.getElementById("scissors-btn");
 
+//Event listener for start game button, resets game once 5 rounds has been won by player or computer
+startGameBtn.addEventListener("click", function() {
+    playerWinCount = 0;
+    computerWinCount = 0;
+    rockBtn.disabled = false;
+    paperBtn.disabled = false;
+    scissorsBtn.disabled = false;
+    results.textContent = "Select Rock, Paper, or Scissors to start the game! The first to win 5 rounds, wins the game!"
+});
+
+//Event listeners for the RSP buttons to start each round
+rockBtn.addEventListener("click", function() {
+    const computerSelection = getComputerChoice();
+    playRound('ROCK', computerSelection);
+});
+
+
+paperBtn.addEventListener("click", function() {
+    const computerSelection = getComputerChoice();
+    playRound('PAPER', computerSelection);
+});
+
+scissorsBtn.addEventListener("click", function() {
+    const computerSelection = getComputerChoice();
+    playRound('SCISSORS', computerSelection);
+});
+
+//Function for randomizing computer's selection out of rock, paper or scissors
 function getComputerChoice(){
-    let num = Math.floor(Math.random() * 3) + 1;
-    let computerSelection;
-
-    if (num === 1) {
-        computerSelection = "rock";
-    } else if (num === 2) {
-        computerSelection = "paper";
-    } else {
-        computerSelection = "scissors";
-    }
+    const choices = ['ROCK', 'PAPER', 'SCISSORS'];
+    const randomizeChoice = Math.floor(Math.random() * choices.length);
+    const computerSelection = choices[randomizeChoice];
 
     return computerSelection;
 }
 
+
 function playRound(playerSelection, computerSelection) {
 
+    playerSelection =playerSelection.toUpperCase();
+
+    //Conditionals for the game based on computer and player selections, displays round results and increments round win totals
     if (playerSelection === computerSelection){
-        return "Tie!";
+        results.textContent = `The Player and Computer both selected ${playerSelection}. Tie!`;
     } else if (
-      (playerSelection === "rock" && computerSelection === "scissors") ||
-      (playerSelection === "paper" && computerSelection === "rock") ||
-      (playerSelection === "scissors" && computerSelection === "paper")
+      (playerSelection === "ROCK" && computerSelection === "SCISSORS") ||
+      (playerSelection === "PAPER" && computerSelection === "ROCK") ||
+      (playerSelection === "SCISSORS" && computerSelection === "PAPER")
     ) {
         playerWinCount++;
-        return (playerSelection + " beats " + computerSelection + ". Player wins the round! The player has won " + playerWinCount + " round(s)!");
+        results.textContent = (`The Player selected ${playerSelection}. The Computer selected ${computerSelection}. The Player wins the round! The Player has won ${playerWinCount} round(s)!`);
     } else {
         computerWinCount++;
-        return (computerSelection + " beats " + playerSelection + ". Computer wins the round! The computer has won " + computerWinCount + " round(s)!");
+        results.textContent = (`The Player selected ${playerSelection}. The Computer selected ${computerSelection}. The Computer wins the round! The Computer has won ${computerWinCount} round(s)!`);
     }
+
+    //Display results of game and disables RSP buttons, changes start game button text
+    if (playerWinCount === 5) {
+        results.textContent = "The Player has won 5 rounds. The Player wins the game!";
+        startGameBtn.textContent = "START NEW GAME";
+        rockBtn.disabled = true;
+        paperBtn.disabled = true;
+        scissorsBtn.disabled = true;
+    } else if (computerWinCount === 5) {
+        results.textContent = "The Computer has won 5 rounds. The Computer wins the game!";
+        startGameBtn.textContent = "START NEW GAME";
+        rockBtn.disabled = true;
+        paperBtn.disabled = true;
+        scissorsBtn.disabled = true;
+    }
+
 }
-
-function game() {
-
-    let currentRound = true;
-    let roundNum = 1;
-
-    while (currentRound) {
-        let playerSelection = prompt("Pick one: Rock, Paper, or Scissors?");
-
-        if ((playerSelection.toLowerCase() == "rock") ||
-            (playerSelection.toLowerCase() == "paper") ||
-            (playerSelection.toLowerCase() == "scissors")) {
-            playerSelection = playerSelection.toLowerCase();
-            let computerSelection = getComputerChoice();
-            alert(playRound(playerSelection, computerSelection));
-        } else {
-            alert("Invalid entry. Please pick Rock, Paper, or Scissors.");
-            continue;
-        }
-
-        if (roundNum == 5) {
-            currentRound = false;
-        } else {
-            roundNum++;
-        }
-
-    }
-
-    if (playerWinCount > computerWinCount) {
-        alert("The player won " + playerWinCount + " out of 5 rounds. The player wins the game!");
-    } else if (playerWinCount < computerWinCount) {
-        alert("The computer won " + computerWinCount + " out of 5 rounds. The computer wins the game!");
-    } else if (playerWinCount === computerWinCount) {
-        alert("The player and computer each won " + playerWinCount + " round(s). Tie game!");
-    }
-}
-
-game();
